@@ -11,7 +11,6 @@ import java.net.Socket;
  */
 public class EchoServer {
     public static void main(String[] args) {
-        System.out.println("here ass hole");
         int portNumber = 7;
         if (args[0] != null) {
             portNumber = Integer.parseInt(args[0]);
@@ -22,11 +21,13 @@ public class EchoServer {
                 Socket clientSocket = socket.accept();
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));) {
-                    String inputLine;
-                    while ((inputLine = in.readLine())!=null) {
-                        System.out.println("got from socket: "+inputLine);
-                        out.println(inputLine);
-                    }
+            System.out.println(
+                    "Accepted connection from: " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                System.out.println("got from socket: " + inputLine);
+                out.println(inputLine);
+            }
 
         } catch (Exception e) {
             System.out.println(e);
