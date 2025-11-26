@@ -1,4 +1,4 @@
-package com.rashmit.johncrickett;
+package com.rashmit.johncrickett.Tcp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,11 +6,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class SocketHandler implements Runnable{
+public class TcpServerHandlerThread implements Runnable{
 
     private final Socket socket;
 
-    public SocketHandler(Socket socket){
+    public TcpServerHandlerThread(Socket socket){
         this.socket = socket;
     }
 

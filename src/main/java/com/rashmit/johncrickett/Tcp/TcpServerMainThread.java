@@ -1,4 +1,4 @@
-package com.rashmit.johncrickett;
+package com.rashmit.johncrickett.Tcp;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -6,12 +6,12 @@ import java.net.Socket;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;;
 
-public class NetworkService implements Runnable {
+public class TcpServerMainThread implements Runnable {
 
     private final ServerSocket serverSocket;
     private final ExecutorService pool;
 
-    public NetworkService(int portNumber, int poolSize) throws IOException {
+    public TcpServerMainThread(int portNumber, int poolSize) throws IOException {
         serverSocket = new ServerSocket(portNumber);
         pool = Executors.newFixedThreadPool(poolSize);
     }
@@ -22,7 +22,7 @@ public class NetworkService implements Runnable {
         for (;;) {
             try {
                 Socket clientSocket = serverSocket.accept();
-                pool.submit(new SocketHandler(clientSocket));
+                pool.submit(new TcpServerHandlerThread(clientSocket));
             } catch (Exception e) {
                 // TODO: handle exception
                 e.printStackTrace();
